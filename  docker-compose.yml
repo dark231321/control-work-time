@@ -1,0 +1,41 @@
+version: '1'
+
+services:
+  company-service:
+    image: danilteterin/company-service
+    container_name: company-service
+    mem_limit: 512M
+    ports:
+      - 8082:8082
+
+  control-service:
+    image: danilteterin/control-service
+    container_name: control-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+    entrypoint: ["./dockerize","-wait=tcp://config-server:8888","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
+    ports:
+      - 8081:8081
+
+  discovery-service:
+    image: danilteterin/discovery-service
+    container_name: discovery-server
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
+    ports:
+      - 8671:8671
+
+  gateway-service:
+    image: danilteterin/gateway-service
+    container_name: gateway-service
+    mem_limit: 512M
+    depends_on:
+      - customers-service
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8080","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
+    ports:
+      - 8080:8080
