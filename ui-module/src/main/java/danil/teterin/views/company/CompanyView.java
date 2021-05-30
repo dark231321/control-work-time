@@ -57,7 +57,7 @@ public class CompanyView extends VerticalLayout {
             horizontalLayout.setVerticalComponentAlignment(Alignment.CENTER, editButton);
             horizontalLayout.setVerticalComponentAlignment(Alignment.END, editButton);
             horizontalLayout.setVerticalComponentAlignment(Alignment.START, deleteButton);
-            addButtonListner();
+            addClickListener();
             add(back, companyDtoGrid, horizontalLayout);
         }
     }
@@ -69,12 +69,12 @@ public class CompanyView extends VerticalLayout {
 
     }
 
-    private void addButtonListner(){
-        addButton.addAttachListener(
+    private void addClickListener(){
+        addButton.addClickListener(
                 e -> feignClientCompany.save(companyDtoGrid.asSingleSelect().getValue())
         );
 
-        deleteButton.addAttachListener(
+        deleteButton.addClickListener(
                 e -> feignClientCompany.delete(companyDtoGrid.asSingleSelect().getValue().getId())
         );
 

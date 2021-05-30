@@ -19,6 +19,9 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import danil.teterin.views.company.CompanyView;
 import danil.teterin.views.department.DepartmentView;
+import danil.teterin.views.door.DoorView;
+import danil.teterin.views.employee.EmployeeView;
+import danil.teterin.views.position.PositionView;
 
 import java.util.Optional;
 
@@ -83,7 +86,10 @@ public class MainView extends AppLayout {
     private Component[] createMenuItems() {
         return new Tab[] {
                 createTab("Company", CompanyView.class),
-                createTab("Department", DepartmentView.class)
+                createTab("Department", DepartmentView.class),
+                createTab("Door", DoorView.class),
+                createTab("Employee", EmployeeView.class),
+                createTab("Position", PositionView.class)
         };
     }
 

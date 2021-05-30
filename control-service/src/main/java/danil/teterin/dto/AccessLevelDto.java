@@ -1,9 +1,9 @@
 package danil.teterin.dto;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
+
+@Builder
 @Setter
 @Getter
 @NoArgsConstructor

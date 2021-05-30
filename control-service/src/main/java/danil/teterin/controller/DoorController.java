@@ -1,10 +1,7 @@
-package danil.teterin.rest;
+package danil.teterin.controller;
 
-import danil.teterin.dto.ControlDto;
 import danil.teterin.dto.DoorDto;
-import danil.teterin.mapper.ControlMapper;
 import danil.teterin.mapper.DoorMapper;
-import danil.teterin.service.ControlService;
 import danil.teterin.service.DoorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package danil.teterin.rest;
+package danil.teterin.controller;
 
 import danil.teterin.dto.department.DepartmentDto;
 import danil.teterin.mapper.DepartmentMapper;
@@ -8,8 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.function.Consumer;
 
 @Slf4j
 @RequestMapping("/api/company/department")

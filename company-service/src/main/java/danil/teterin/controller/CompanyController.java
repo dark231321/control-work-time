@@ -1,12 +1,10 @@
-package danil.teterin.rest;
+package danil.teterin.controller;
 
-import danil.teterin.dto.department.DepartmentDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import danil.teterin.dto.company.CompanyDto;
 import danil.teterin.mapper.CompanyMapper;
 import danil.teterin.service.CompanyService;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

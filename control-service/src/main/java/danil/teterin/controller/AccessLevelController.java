@@ -1,4 +1,4 @@
-package danil.teterin.rest;
+package danil.teterin.controller;
 
 import danil.teterin.dto.AccessLevelDto;
 import danil.teterin.mapper.AccessLevelMapper;

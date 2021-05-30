@@ -1,44 +1,43 @@
-package danil.teterin.views.department;
+package danil.teterin.views.employee;
 
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import danil.teterin.clients.company.CompanyDto;
-import danil.teterin.clients.company.FeignClientCompany;
-import danil.teterin.clients.department.DepartmentDto;
-import danil.teterin.clients.department.DepartmentFeignClient;
+import danil.teterin.clients.access.AccessDto;
+import danil.teterin.clients.access.AccessFeignClient;
+import danil.teterin.clients.employee.EmployeeDto;
+import danil.teterin.clients.employee.FeignEmployeeClient;
 import danil.teterin.views.MainView;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Route(value = "Department", layout = MainView.class)
+@Route(value = "Employee", layout = MainView.class)
 /*@PWA(name = "Vaadin Control", shortName = "Control")
 @Push*/
 @SuppressWarnings("OptionalGetWithoutIsPresent")
-@PageTitle("Department: grid")
-public class DepartmentView extends VerticalLayout {
-    private final DepartmentFeignClient departmentFeignClient;
-    private Grid<DepartmentDto> departmentDtoGrid;
+@PageTitle("Access-Level: grid")
+public class EmployeeView extends VerticalLayout {
+    private final FeignEmployeeClient employeeClient;
+    private Grid<EmployeeDto> departmentDtoGrid;
 
     private final Button backButton             = new Button("BACK");
     private final Button addButton              = new Button("ADD");
     private final Button editButton             = new Button("EDIT");
-    private final Button deleteButton           = new Button("DELETE");
+    private Button deleteButton ;
 
     @Autowired
-    public DepartmentView(DepartmentFeignClient departmentFeignClient){
-        this.departmentFeignClient = departmentFeignClient;
+    public EmployeeView(FeignEmployeeClient employeeClient){
+        this.employeeClient = employeeClient;
     }
 
     @Override
     protected void onAttach(AttachEvent attachEvent) {
         if (attachEvent.isInitialAttach()) {
-            departmentDtoGrid = new Grid<>(DepartmentDto.class);
+            departmentDtoGrid = new Grid<>(EmployeeDto.class);
             HorizontalLayout back = new HorizontalLayout();
             back.add(backButton);
             editButton.setEnabled(false);
@@ -58,22 +57,15 @@ public class DepartmentView extends VerticalLayout {
 
     private void setGridValuesReactive() {
         UI ui = getUI().get();
-        departmentFeignClient.findAll().collectList().subscribe(
+        employeeClient.findAll().collectList().subscribe(
                 department -> ui.access(() -> departmentDtoGrid.setItems(department)));
 
     }
 
     private void addButtonListner(){
-        addButton.addClickListener(
-                e -> departmentFeignClient.save(departmentDtoGrid.asSingleSelect().getValue())
-        );
-
-        deleteButton.addClickListener(
-                e -> departmentFeignClient.delete(
-                        departmentDtoGrid.asSingleSelect().getValue().getId())
-        );
+        deleteButton    = new Button("DELETE",
+                e ->  employeeClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId()));
 
     }
-
 
 }

@@ -3,19 +3,15 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="2" author="danil">
-        <createTable tableName="department">
+    <changeSet id="1" author="danil">
+        <createTable tableName="position">
 
-            <column name="id" type="INTEGER" autoIncrement="true">
+            <column name="id" type="VARCHAR(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="name_of_department" type="VARCHAR(100)">
+            <column name="name" type="VARCHAR(100)">
                 <constraints nullable="false"/>
-            </column>
-
-            <column name="fk_company" type="INTEGER">
-                <constraints foreignKeyName="fk_company" nullable="false" referencedTableName="company"/>
             </column>
 
         </createTable>

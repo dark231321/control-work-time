@@ -1,0 +1,31 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: employee-service
+
+  r2dbc:
+    username: postgres
+    password: 123
+    url: r2dbc:postgresql://localhost:5432/test_employee_service
+
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+
+  liquibase:
+    user: postgres
+    password: 123
+    url: jdbc:postgresql://localhost:5432/test_employee_service
+    change-log: classpath:liquibase/db.changelog-master.xml
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      registerWithEureka: true
+      fetchRegistry: true
+      default-zone: http://localhost:8761/eureka/
