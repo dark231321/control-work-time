@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompanyDto {
-    private String id;
+    private int id;
     private String address;
     private String country;
 

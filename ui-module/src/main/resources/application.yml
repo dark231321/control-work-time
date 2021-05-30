@@ -4,10 +4,11 @@ server:
 spring:
   application:
     name: ui-service
-
-  servlet:
-    multipart:
-      enabled: false
+  main:
+    allow-bean-definition-overriding: true
+#  servlet:
+#    multipart:
+#      enabled: false
 
 eureka:
   instance:

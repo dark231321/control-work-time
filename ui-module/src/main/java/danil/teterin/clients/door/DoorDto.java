@@ -1,13 +1,14 @@
-package danil.teterin.clients.department;
+package danil.teterin.clients.door;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@Builder(toBuilder = true)
+@Builder
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentDto {
+public class DoorDto {
     private int id;
     private String name;
 }

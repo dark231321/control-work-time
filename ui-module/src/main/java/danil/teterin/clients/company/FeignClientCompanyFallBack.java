@@ -23,4 +23,9 @@ public class FeignClientCompanyFallBack implements FeignClientCompany {
     public Mono<String> delete(int id) {
         return Mono.error(IllegalArgumentException::new);
     }
+
+    @Override
+    public Mono<CompanyDto> save(CompanyDto companyDto) {
+        return Mono.error(IllegalArgumentException::new);
+    }
 }
