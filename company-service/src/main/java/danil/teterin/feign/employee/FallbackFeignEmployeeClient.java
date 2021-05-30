@@ -1,4 +1,4 @@
-package danil.teterin.clients.employee;
+package danil.teterin.feign.employee;
 
 import org.danil.teterin.employee.EmployeeDto;
 import reactor.core.publisher.Flux;

@@ -1,8 +1,11 @@
 package danil.teterin.service.impl;
 
+import danil.teterin.feign.accesslevel.AccessFeignClient;
+import danil.teterin.feign.department.DepartmentFeignClient;
 import danil.teterin.model.Employee;
 import danil.teterin.repository.EmployeeRepository;
 import danil.teterin.service.EmployeeService;
+import danil.teterin.service.PositionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,7 +24,6 @@ import java.util.UUID;
 public class EmployeeServiceImpl implements EmployeeService {
     
     private final EmployeeRepository employeeRepository;
-
 
     @Override
     public Mono<Employee> findById(String id) {

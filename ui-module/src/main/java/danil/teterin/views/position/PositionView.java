@@ -84,8 +84,7 @@ public class PositionView extends VerticalLayout {
         addButton.addClickListener(
                 e -> {
                     PositionEditorDialog positionEditorDialog
-                            = new PositionEditorDialog(feignPositionClient,
-                            PositionDto.builder().build());
+                            = new PositionEditorDialog(feignPositionClient, null);
                     positionEditorDialog.open();
                     while (!positionEditorDialog.isOpened())
                         this.setGridValuesReactive();

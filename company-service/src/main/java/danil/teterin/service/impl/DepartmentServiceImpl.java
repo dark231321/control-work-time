@@ -1,5 +1,7 @@
 package danil.teterin.service.impl;
 
+import danil.teterin.feign.door.DoorFeignClient;
+import danil.teterin.feign.employee.FeignEmployeeClient;
 import danil.teterin.mapper.CompanyMapper;
 import danil.teterin.mapper.DepartmentMapper;
 import danil.teterin.service.CompanyService;
@@ -21,6 +23,8 @@ import reactor.util.Logger;
 @RequiredArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService {
 
+    private final DoorFeignClient doorFeignClient;
+    private final FeignEmployeeClient feignEmployeeClient;
     private final DepartmentMapper departmentMapper;
     private final DepartmentRepository departmentRepository;
     private final CompanyService companyService;
@@ -47,16 +51,22 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Mono<String> delete(Integer id) {
-        log.info("In CompanyServiceImpl - delete by id {}", id);
-        return departmentRepository.deleteById(id)
-                .then(Mono.just("Deleted"));
+        log.info("In CompanyServiceImpl - delete by company {}", id);
+        return Mono.just(id).map(dep -> {
+            departmentRepository.deleteById(id);
+            this.deleteCascade(id);
+            return Mono.empty();
+        }).then(Mono.just("Deleted"));
     }
 
     @Override
     public Mono<String> delete(Department department) {
         log.info("In CompanyServiceImpl - delete by company {}", department);
-        return departmentRepository.delete(department)
-                .then(Mono.just("Deleted"));
+        return Mono.just(department).map(dep -> {
+            departmentRepository.delete(dep);
+            this.deleteCascade(department.getId());
+            return Mono.empty();
+        }).then(Mono.just("Deleted"));
     }
 
     @Override
@@ -70,5 +80,15 @@ public class DepartmentServiceImpl implements DepartmentService {
                             .subscribe(dep::setCompanyDto);
                     return dep;
                 });
+    }
+
+    public Mono<Object> deleteCascade(int id){
+        return Mono.just(id).map(
+                dep ->{
+                    feignEmployeeClient.deleteByDepartmentId(id);
+                    doorFeignClient.deleteByDepartmentId(id);
+                    return Mono.empty();
+                }
+        );
     }
 }

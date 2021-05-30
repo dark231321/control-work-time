@@ -27,7 +27,7 @@ public class EmployeeEditorDialog {
     private Select<PositionDto>         positionNativeSelect;
     private Select<AccessLevelDto>      accessLevelDtoNativeSelect;
 
-    private final EmployeeDto employeeDto;
+    private EmployeeDto employeeDto;
     private final DepartmentFeignClient departmentService;
     private final FeignPositionClient positionService;
     private final AccessFeignClient accessLevelService;
@@ -47,12 +47,16 @@ public class EmployeeEditorDialog {
     }
 
     private void init() {
-        lastname.setValue(employeeDto.getLastname());
-        firstname.setValue(employeeDto.getFirstname());
-        middlename.setValue(employeeDto.getMiddlename());
-        passport_series.setValue(employeeDto.getPassport_series());
-        passport_number.setValue(employeeDto.getPassport_number());
-        dateOfBirthday.setValue(LocalDate.from(Instant.ofEpochMilli(employeeDto.getDateOfBirthday().getTime())));
+        if (employeeDto != null) {
+            lastname.setValue(employeeDto.getLastname());
+            firstname.setValue(employeeDto.getFirstname());
+            middlename.setValue(employeeDto.getMiddlename());
+            passport_series.setValue(employeeDto.getPassport_series());
+            passport_number.setValue(employeeDto.getPassport_number());
+            dateOfBirthday.setValue(LocalDate.from(Instant.ofEpochMilli(employeeDto.getDateOfBirthday().getTime())));
+        } else {
+            employeeDto = EmployeeDto.builder().build();
+        }
 
     }
 }

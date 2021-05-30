@@ -1,22 +1,22 @@
-package danil.teterin.clients.employee;
+package danil.teterin.feign.door;
 
-import org.danil.teterin.employee.EmployeeDto;
+import org.danil.teterin.door.DoorDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public class FallbackFeignEmployeeClient implements FeignEmployeeClient {
+public class FallbackDoorFeignClient implements DoorFeignClient{
     @Override
-    public Mono<String> deleteByDepartmentId(int id) {
+    public Mono<DoorDto> findById(String id) {
         return Mono.error(IllegalArgumentException::new);
     }
 
     @Override
-    public Flux<EmployeeDto> findAll() {
+    public Flux<DoorDto> findAll() {
         return Flux.error(IllegalArgumentException::new);
     }
 
     @Override
-    public Mono<EmployeeDto> save(EmployeeDto employeeDto) {
+    public Mono<String> delete(DoorDto doorDto) {
         return Mono.error(IllegalArgumentException::new);
     }
 
@@ -26,7 +26,12 @@ public class FallbackFeignEmployeeClient implements FeignEmployeeClient {
     }
 
     @Override
-    public Mono<EmployeeDto> findById(String id) {
+    public Mono<DoorDto> save(DoorDto doorDto) {
+        return Mono.error(IllegalArgumentException::new);
+    }
+
+    @Override
+    public Mono<String> deleteByDepartmentId(int id) {
         return Mono.error(IllegalArgumentException::new);
     }
 }

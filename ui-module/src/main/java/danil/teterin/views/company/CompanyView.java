@@ -84,7 +84,7 @@ public class CompanyView extends VerticalLayout {
         addButton.addClickListener(
              e -> {
                  CompanyEditorDialog companyEditorDialog
-                         = new CompanyEditorDialog(feignClientCompany, CompanyDto.builder().build());
+                         = new CompanyEditorDialog(feignClientCompany, null);
                  companyEditorDialog.open();
                  while (!companyEditorDialog.isOpened())
                      this.setGridValuesReactive();

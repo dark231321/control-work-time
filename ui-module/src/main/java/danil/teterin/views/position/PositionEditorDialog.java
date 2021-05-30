@@ -18,13 +18,13 @@ public class PositionEditorDialog extends Dialog {
     private final Button delete;
 
     private final FeignPositionClient feignPositionClient;
-    private final PositionDto positionDto;
+    private PositionDto positionDto;
 
     public PositionEditorDialog(FeignPositionClient feignPositionClient,
                                 PositionDto positionDto) {
         this.feignPositionClient = feignPositionClient;
         this.positionDto = positionDto;
-
+        init();
         save   = new Button("Save",   event -> {
             positionDto.setName(nameOfCompany.getValue());
             feignPositionClient.save(positionDto);
@@ -36,6 +36,9 @@ public class PositionEditorDialog extends Dialog {
     }
 
     private void init() {
-        nameOfCompany.setValue(positionDto.getName());
+        if (positionDto!=null)
+            nameOfCompany.setValue(positionDto.getName());
+        else
+            positionDto = PositionDto.builder().build();
     }
 }

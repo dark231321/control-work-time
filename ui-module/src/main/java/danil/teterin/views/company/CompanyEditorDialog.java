@@ -42,8 +42,13 @@ public class CompanyEditorDialog extends Dialog {
     }
 
     private void init() {
-        nameOfCompany.setValue(companyDto.getName());
-        addressOfCompany.setValue(companyDto.getAddress());
-        countryOfCompany.setValue(companyDto.getCountry());
+        if(companyDto != null) {
+            nameOfCompany.setValue(companyDto.getName());
+            addressOfCompany.setValue(companyDto.getAddress());
+            countryOfCompany.setValue(companyDto.getCountry());
+        } else
+        {
+            companyDto = CompanyDto.builder().build();
+        }
     }
 }

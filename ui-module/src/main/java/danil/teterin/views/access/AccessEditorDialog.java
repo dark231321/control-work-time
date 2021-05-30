@@ -22,7 +22,7 @@ public class AccessEditorDialog extends Dialog {
                               AccessLevelDto accessDto) {
         this.feignClientCompany = feignClientCompany;
         this.accessDto = accessDto;
-
+        init();
         save   = new Button("Save",   event -> {
             accessDto.setName(nameOfCompany.getValue());
             feignClientCompany.save(accessDto);
@@ -34,7 +34,10 @@ public class AccessEditorDialog extends Dialog {
     }
 
     private void init() {
-        nameOfCompany.setValue(accessDto.getName());
+        if (accessDto != null)
+            nameOfCompany.setValue(accessDto.getName());
+        else
+            accessDto = AccessLevelDto.builder().build();
     }
 
 

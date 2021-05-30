@@ -1,4 +1,4 @@
-package danil.teterin.clients.employee;
+package danil.teterin.feign.employee;
 
 import org.danil.teterin.employee.EmployeeDto;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
         path = "/api/employee/",
         fallback = FallbackFeignEmployeeClient.class)
 public interface FeignEmployeeClient {
+
 
     @DeleteMapping("{id}")
     Mono<String> deleteByDepartmentId(@PathVariable("id") int id);

@@ -76,8 +76,7 @@ public class DoorView extends VerticalLayout {
         editButton.addClickListener(
                 event -> {
                     DoorEditorDialog doorEditorDialog
-                            = new DoorEditorDialog(doorFeignClient,
-                            departmentDtoGrid.asSingleSelect().getValue());
+                            = new DoorEditorDialog(doorFeignClient, null);
                     doorEditorDialog.open();
                     while (!doorEditorDialog.isOpened())
                         this.setGridValuesReactive();

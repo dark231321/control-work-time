@@ -37,6 +37,9 @@ public class DoorEditorDialog extends Dialog {
     }
 
     private void init() {
-        nameOfCompany.setValue(doorDto.getName());
+        if(doorDto != null)
+            nameOfCompany.setValue(doorDto.getName());
+        else
+            doorDto = DoorDto.builder().build();
     }
 }

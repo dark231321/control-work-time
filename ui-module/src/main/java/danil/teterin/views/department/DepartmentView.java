@@ -92,8 +92,7 @@ public class DepartmentView extends VerticalLayout {
                 e -> {
                     DepartmentEditorDialog departmentEditorDialog
                             = new DepartmentEditorDialog(feignClientCompany,
-                            departmentFeignClient,
-                            DepartmentDto.builder().build());
+                            departmentFeignClient, null);
                     departmentEditorDialog.open();
                     while (!departmentEditorDialog.isOpened())
                         this.setGridValuesReactive();

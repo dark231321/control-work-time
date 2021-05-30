@@ -86,7 +86,7 @@ public class AccessView extends VerticalLayout {
         addButton.addClickListener(
                 e -> {
                     AccessEditorDialog accessEditorDialog
-                            = new AccessEditorDialog(accessFeignClient, AccessLevelDto.builder().build());
+                            = new AccessEditorDialog(accessFeignClient, null);
                     accessEditorDialog.open();
                     while (!accessEditorDialog.isOpened())
                         this.setGridValuesReactive();
