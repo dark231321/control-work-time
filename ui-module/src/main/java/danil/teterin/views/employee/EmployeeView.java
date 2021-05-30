@@ -13,6 +13,7 @@ import danil.teterin.clients.access.AccessFeignClient;
 import danil.teterin.clients.employee.EmployeeDto;
 import danil.teterin.clients.employee.FeignEmployeeClient;
 import danil.teterin.views.MainView;
+import liquibase.pro.packaged.B;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Employee", layout = MainView.class)
@@ -27,7 +28,7 @@ public class EmployeeView extends VerticalLayout {
     private final Button backButton             = new Button("BACK");
     private final Button addButton              = new Button("ADD");
     private final Button editButton             = new Button("EDIT");
-    private Button deleteButton ;
+    private final Button deleteButton           = new Button("DELETE");
 
     @Autowired
     public EmployeeView(FeignEmployeeClient employeeClient){
@@ -63,8 +64,10 @@ public class EmployeeView extends VerticalLayout {
     }
 
     private void addButtonListner(){
-        deleteButton    = new Button("DELETE",
-                e ->  employeeClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId()));
+        deleteButton.addClickListener(
+                e -> employeeClient.delete(
+                        departmentDtoGrid.asSingleSelect().getValue().getId())
+        );
 
     }
 

@@ -16,8 +16,6 @@ import danil.teterin.views.MainView;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Position", layout = MainView.class)
-/*@PWA(name = "Vaadin Control", shortName = "Control")
-@Push*/
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 @PageTitle("Access-Level: grid")
 public class PositionView extends VerticalLayout {
@@ -27,7 +25,7 @@ public class PositionView extends VerticalLayout {
     private final Button backButton             = new Button("BACK");
     private final Button addButton              = new Button("ADD");
     private final Button editButton             = new Button("EDIT");
-    private Button deleteButton ;
+    private final Button deleteButton           = new Button("DELETE");
 
     @Autowired
     public PositionView(FeignPositionClient feignPositionClient){
@@ -63,8 +61,9 @@ public class PositionView extends VerticalLayout {
     }
 
     private void addButtonListner(){
-        deleteButton    = new Button("DELETE",
-                e ->  feignPositionClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId()));
-
+        deleteButton.addClickListener(
+                e -> feignPositionClient.delete(
+                        departmentDtoGrid.asSingleSelect().getValue().getId())
+        );
     }
 }

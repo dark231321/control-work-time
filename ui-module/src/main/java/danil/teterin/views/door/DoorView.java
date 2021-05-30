@@ -28,7 +28,7 @@ public class DoorView extends VerticalLayout {
     private final Button backButton             = new Button("BACK");
     private final Button addButton              = new Button("ADD");
     private final Button editButton             = new Button("EDIT");
-    private Button deleteButton ;
+    private final Button deleteButton           = new Button("DELETE");
 
     @Autowired
     public DoorView(DoorFeignClient doorFeignClient){
@@ -64,8 +64,10 @@ public class DoorView extends VerticalLayout {
     }
 
     private void addButtonListner(){
-        deleteButton    = new Button("DELETE",
-                e ->  doorFeignClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId()));
+        deleteButton.addClickListener(
+                e -> doorFeignClient.delete(
+                        departmentDtoGrid.asSingleSelect().getValue().getId())
+        );
 
     }
 }
