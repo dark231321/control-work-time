@@ -10,13 +10,13 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import danil.teterin.clients.company.FeignClientCompany;
 import danil.teterin.views.MainView;
+import org.danil.teterin.company.CompanyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Company", layout = MainView.class)
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 @PageTitle("Company: grid")
 public class CompanyView extends VerticalLayout {
-//    private final CompanyEditorForm companyEditorForm;
     private final FeignClientCompany feignClientCompany;
     private Grid<CompanyDto> companyDtoGrid;
 
@@ -76,7 +76,7 @@ public class CompanyView extends VerticalLayout {
                     CompanyEditorDialog companyEditorDialog
                             = new CompanyEditorDialog(feignClientCompany, companyDtoGrid.asSingleSelect().getValue());
                     companyEditorDialog.open();
-                    while (companyEditorDialog.isOpened())
+                    while (!companyEditorDialog.isOpened())
                         this.setGridValuesReactive();
                 }
         );

@@ -1,7 +1,5 @@
 package danil.teterin.controller;
 
-import danil.teterin.dto.department.DepartmentDto;
-import danil.teterin.dto.department.DepartmentWithCompanyDto;
 import danil.teterin.mapper.DepartmentMapper;
 import danil.teterin.service.DepartmentService;
 import lombok.RequiredArgsConstructor;

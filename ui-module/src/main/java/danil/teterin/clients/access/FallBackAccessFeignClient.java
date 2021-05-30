@@ -1,16 +1,17 @@
 package danil.teterin.clients.access;
 
+import org.danil.teterin.accesslevel.AccessLevelDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public class FallBackAccessFeignClient implements AccessFeignClient{
     @Override
-    public Flux<AccessDto> findAll() {
+    public Flux<AccessLevelDto> findAll() {
         return Flux.error(IllegalArgumentException::new);
     }
 
     @Override
-    public Mono<AccessDto> findById(int id) {
+    public Mono<AccessLevelDto> findById(int id) {
         return Mono.error(IllegalArgumentException::new);
     }
 
@@ -20,7 +21,7 @@ public class FallBackAccessFeignClient implements AccessFeignClient{
     }
 
     @Override
-    public Mono<AccessDto> save(AccessDto companyDto) {
+    public Mono<AccessLevelDto> save(AccessLevelDto accessLevelDto) {
         return Mono.error(IllegalArgumentException::new);
     }
 }

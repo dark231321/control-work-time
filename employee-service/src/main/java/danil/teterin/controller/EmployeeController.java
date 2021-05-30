@@ -1,7 +1,5 @@
 package danil.teterin.controller;
 
-import danil.teterin.dto.EmployeeDto;
-import danil.teterin.dto.PositionDto;
 import danil.teterin.mapper.EmployeeMapper;
 import danil.teterin.mapper.PositionMapper;
 import danil.teterin.model.Employee;

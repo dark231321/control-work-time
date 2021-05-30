@@ -1,9 +1,16 @@
 package danil.teterin.clients.department;
 
+import org.danil.teterin.department.DepartmentDto;
+import org.danil.teterin.department.DepartmentWithCompanyDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public class FallbackDepartmentFeignClient implements DepartmentFeignClient {
+
+    @Override
+    public Flux<DepartmentWithCompanyDto> findDepartmentWithCompanies() {
+        return Flux.error(IllegalArgumentException::new);
+    }
 
     @Override
     public Flux<DepartmentDto> findAll() {
@@ -16,7 +23,7 @@ public class FallbackDepartmentFeignClient implements DepartmentFeignClient {
     }
 
     @Override
-    public Mono<CompanyDto> findById(int id) {
+    public Mono<DepartmentDto> findById(int id) {
         return Mono.error(IllegalArgumentException::new);
     }
 

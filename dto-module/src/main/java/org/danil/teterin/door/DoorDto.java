@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DoorDto {
-    private int id;
+    private String id;
     private String name;
 }

@@ -6,6 +6,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import danil.teterin.clients.company.FeignClientCompany;
+import org.danil.teterin.company.CompanyDto;
 
 public class CompanyEditorDialog extends Dialog {
 
@@ -24,7 +25,7 @@ public class CompanyEditorDialog extends Dialog {
                                CompanyDto companyDto) {
         this.feignClientCompany = feignClientCompany;
         this.companyDto = companyDto;
-
+        init();
         save   = new Button("Save",   event -> {
             companyDto.setName(addressOfCompany.getValue());
             companyDto.setAddress(addressOfCompany.getValue());
@@ -38,5 +39,11 @@ public class CompanyEditorDialog extends Dialog {
                 addressOfCompany,
                 countryOfCompany,
                 new HorizontalLayout(cancel, save, delete)));
+    }
+
+    private void init() {
+        nameOfCompany.setValue(companyDto.getName());
+        addressOfCompany.setValue(companyDto.getAddress());
+        countryOfCompany.setValue(companyDto.getCountry());
     }
 }

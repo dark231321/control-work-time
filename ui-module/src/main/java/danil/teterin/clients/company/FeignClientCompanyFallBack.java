@@ -1,5 +1,7 @@
 package danil.teterin.clients.company;
 
+import org.danil.teterin.company.CompanyDto;
+import org.danil.teterin.department.DepartmentDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

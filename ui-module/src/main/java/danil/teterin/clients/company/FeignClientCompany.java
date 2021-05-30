@@ -1,5 +1,6 @@
 package danil.teterin.clients.company;
 
+import org.danil.teterin.company.CompanyDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import reactivefeign.spring.config.ReactiveFeignClient;

@@ -10,6 +10,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import danil.teterin.clients.access.AccessFeignClient;
 import danil.teterin.views.MainView;
+import danil.teterin.views.company.CompanyEditorDialog;
+import org.danil.teterin.accesslevel.AccessLevelDto;
+import org.danil.teterin.company.CompanyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Access-Level", layout = MainView.class)
@@ -19,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @PageTitle("Access-Level: grid")
 public class AccessView extends VerticalLayout {
     private final AccessFeignClient accessFeignClient;
-    private Grid<AccessDto> departmentDtoGrid;
+    private Grid<AccessLevelDto> departmentDtoGrid;
 
     private final Button backButton             = new Button("BACK");
     private final Button addButton              = new Button("ADD");
@@ -33,7 +36,7 @@ public class AccessView extends VerticalLayout {
     @Override
     protected void onAttach(AttachEvent attachEvent) {
         if (attachEvent.isInitialAttach()) {
-            departmentDtoGrid = new Grid<>(AccessDto.class);
+            departmentDtoGrid = new Grid<>(AccessLevelDto.class);
             HorizontalLayout back = new HorizontalLayout();
             back.add(backButton);
             editButton.setEnabled(false);
@@ -59,8 +62,39 @@ public class AccessView extends VerticalLayout {
     }
 
     private void addButtonListner(){
-        deleteButton    = new Button("DELETE",
-                e ->  accessFeignClient. delete(departmentDtoGrid.asSingleSelect().getValue().getId()));
+        departmentDtoGrid.addSelectionListener(valueChangeEvent ->
+        {
+            if (!departmentDtoGrid.asSingleSelect().isEmpty()) {
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+            } else {
+                editButton.setEnabled(false);
+                deleteButton.setEnabled(false);
+            }
+        });
 
+        editButton.addClickListener(
+                event -> {
+                    AccessEditorDialog accessEditorDialog
+                            = new AccessEditorDialog(accessFeignClient, departmentDtoGrid.asSingleSelect().getValue());
+                    accessEditorDialog.open();
+                    while (!accessEditorDialog.isOpened())
+                        this.setGridValuesReactive();
+                }
+        );
+
+        addButton.addClickListener(
+                e -> {
+                    AccessEditorDialog accessEditorDialog
+                            = new AccessEditorDialog(accessFeignClient, AccessLevelDto.builder().build());
+                    accessEditorDialog.open();
+                    while (!accessEditorDialog.isOpened())
+                        this.setGridValuesReactive();
+                }
+        );
+
+        deleteButton.addClickListener(
+                e -> accessFeignClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId())
+        );
     }
 }

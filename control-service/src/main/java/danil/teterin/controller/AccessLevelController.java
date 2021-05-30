@@ -1,10 +1,10 @@
 package danil.teterin.controller;
 
-import danil.teterin.dto.AccessLevelDto;
 import danil.teterin.mapper.AccessLevelMapper;
 import danil.teterin.service.AccessLevelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.danil.teterin.accesslevel.AccessLevelDto;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

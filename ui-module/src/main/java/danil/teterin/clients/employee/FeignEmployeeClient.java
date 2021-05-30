@@ -1,5 +1,6 @@
 package danil.teterin.clients.employee;
 
+import org.danil.teterin.employee.EmployeeDto;
 import org.springframework.web.bind.annotation.*;
 import reactivefeign.spring.config.ReactiveFeignClient;
 import reactor.core.publisher.Flux;

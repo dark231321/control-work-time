@@ -1,5 +1,6 @@
 package danil.teterin.clients.position;
 
+import org.danil.teterin.position.PositionDto;
 import org.springframework.web.bind.annotation.*;
 import reactivefeign.spring.config.ReactiveFeignClient;
 import reactor.core.publisher.Flux;

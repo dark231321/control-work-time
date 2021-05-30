@@ -11,6 +11,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import danil.teterin.clients.door.DoorFeignClient;
 import danil.teterin.views.MainView;
+import danil.teterin.views.department.DepartmentEditorDialog;
+import org.danil.teterin.department.DepartmentDto;
+import org.danil.teterin.door.DoorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Door", layout = MainView.class)
@@ -36,8 +39,6 @@ public class DoorView extends VerticalLayout {
     protected void onAttach(AttachEvent attachEvent) {
         if (attachEvent.isInitialAttach()) {
             departmentDtoGrid = new Grid<>(DoorDto.class);
-            HorizontalLayout back = new HorizontalLayout();
-            back.add(backButton);
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             departmentDtoGrid.setColumns("name");
@@ -49,7 +50,7 @@ public class DoorView extends VerticalLayout {
             horizontalLayout.setVerticalComponentAlignment(FlexComponent.Alignment.END, editButton);
             horizontalLayout.setVerticalComponentAlignment(FlexComponent.Alignment.START, deleteButton);
             addButtonListner();
-            add(back, departmentDtoGrid, horizontalLayout);
+            add(departmentDtoGrid, horizontalLayout);
         }
     }
 
@@ -61,10 +62,41 @@ public class DoorView extends VerticalLayout {
     }
 
     private void addButtonListner(){
-        deleteButton.addClickListener(
-                e -> doorFeignClient.delete(
-                        departmentDtoGrid.asSingleSelect().getValue().getId())
+        departmentDtoGrid.addSelectionListener(valueChangeEvent ->
+        {
+            if (!departmentDtoGrid.asSingleSelect().isEmpty()) {
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+            } else {
+                editButton.setEnabled(false);
+                deleteButton.setEnabled(false);
+            }
+        });
+
+        editButton.addClickListener(
+                event -> {
+                    DoorEditorDialog doorEditorDialog
+                            = new DoorEditorDialog(doorFeignClient,
+                            departmentDtoGrid.asSingleSelect().getValue());
+                    doorEditorDialog.open();
+                    while (!doorEditorDialog.isOpened())
+                        this.setGridValuesReactive();
+                }
         );
 
+        addButton.addClickListener(
+                e -> {
+                    DoorEditorDialog doorEditorDialog
+                            = new DoorEditorDialog(doorFeignClient,
+                            DoorDto.builder().build());
+                    doorEditorDialog.open();
+                    while (!doorEditorDialog.isOpened())
+                        this.setGridValuesReactive();
+                }
+        );
+
+        deleteButton.addClickListener(
+                e -> doorFeignClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId())
+        );
     }
 }

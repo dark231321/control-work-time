@@ -2,7 +2,6 @@ package danil.teterin.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import danil.teterin.dto.company.CompanyDto;
 import danil.teterin.mapper.CompanyMapper;
 import danil.teterin.service.CompanyService;
 import org.danil.teterin.company.CompanyDto;

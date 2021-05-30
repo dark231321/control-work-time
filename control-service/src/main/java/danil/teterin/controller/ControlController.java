@@ -1,10 +1,11 @@
 package danil.teterin.controller;
 
-import danil.teterin.dto.ControlDto;
+
 import danil.teterin.mapper.ControlMapper;
 import danil.teterin.service.ControlService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.danil.teterin.control.ControlDto;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

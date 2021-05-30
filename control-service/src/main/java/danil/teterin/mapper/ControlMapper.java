@@ -1,9 +1,7 @@
 package danil.teterin.mapper;
 
-import danil.teterin.dto.AccessLevelDto;
-import danil.teterin.dto.ControlDto;
-import danil.teterin.model.AccessLevel;
 import danil.teterin.model.Control;
+import org.danil.teterin.control.ControlDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

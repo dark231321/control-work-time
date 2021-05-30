@@ -1,8 +1,6 @@
 package danil.teterin.mapper;
 
 
-import danil.teterin.dto.company.CompanyDepartmentDto;
-import danil.teterin.dto.company.CompanyDto;
 import danil.teterin.model.Company;
 import org.danil.teterin.company.CompanyDepartmentDto;
 import org.danil.teterin.company.CompanyDto;
@@ -17,6 +15,7 @@ public interface CompanyMapper {
 
     @Mapping(target = "departments", ignore = true)
     CompanyDepartmentDto toDtoDepartment(Company company);
+    @Mapping(target = "departments", ignore = true)
     Company toEntity(CompanyDepartmentDto company);
 
 }

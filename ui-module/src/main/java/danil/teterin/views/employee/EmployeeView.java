@@ -8,8 +8,11 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import danil.teterin.clients.access.AccessFeignClient;
+import danil.teterin.clients.department.DepartmentFeignClient;
 import danil.teterin.clients.employee.FeignEmployeeClient;
 import danil.teterin.views.MainView;
+import org.danil.teterin.employee.EmployeeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Employee", layout = MainView.class)
@@ -18,7 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 @PageTitle("Access-Level: grid")
 public class EmployeeView extends VerticalLayout {
+
     private final FeignEmployeeClient employeeClient;
+    private final DepartmentFeignClient departmentFeignClient;
+    private final AccessFeignClient accessFeignClient;
+
     private Grid<EmployeeDto> departmentDtoGrid;
 
     private final Button backButton             = new Button("BACK");
@@ -27,16 +34,16 @@ public class EmployeeView extends VerticalLayout {
     private final Button deleteButton           = new Button("DELETE");
 
     @Autowired
-    public EmployeeView(FeignEmployeeClient employeeClient){
+    public EmployeeView(FeignEmployeeClient employeeClient, DepartmentFeignClient departmentFeignClient, AccessFeignClient accessFeignClient){
         this.employeeClient = employeeClient;
+        this.departmentFeignClient = departmentFeignClient;
+        this.accessFeignClient = accessFeignClient;
     }
 
     @Override
     protected void onAttach(AttachEvent attachEvent) {
         if (attachEvent.isInitialAttach()) {
             departmentDtoGrid = new Grid<>(EmployeeDto.class);
-            HorizontalLayout back = new HorizontalLayout();
-            back.add(backButton);
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             departmentDtoGrid.setColumns("firstname", "lastname", "middlename", "passportSeries", "passportNumber", "dateOfBirthday");
@@ -48,7 +55,7 @@ public class EmployeeView extends VerticalLayout {
             horizontalLayout.setVerticalComponentAlignment(Alignment.END, editButton);
             horizontalLayout.setVerticalComponentAlignment(Alignment.START, deleteButton);
             addButtonListner();
-            add(back, departmentDtoGrid, horizontalLayout);
+            add(departmentDtoGrid, horizontalLayout);
         }
     }
 

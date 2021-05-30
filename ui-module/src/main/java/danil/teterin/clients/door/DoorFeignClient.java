@@ -1,6 +1,7 @@
 package danil.teterin.clients.door;
 
 import danil.teterin.clients.department.FallbackDepartmentFeignClient;
+import org.danil.teterin.door.DoorDto;
 import org.springframework.web.bind.annotation.*;
 import reactivefeign.spring.config.ReactiveFeignClient;
 import reactor.core.publisher.Flux;

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import danil.teterin.model.Company;
 import danil.teterin.repo.CompanyRepository;
 import danil.teterin.service.CompanyService;
+import org.danil.teterin.company.CompanyDepartmentDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
@@ -83,6 +84,11 @@ public class CompanyServiceImpl implements CompanyService {
                     return companyDepartmentDto;
                 });
 
+    }
+
+    @Override
+    public Mono<Company> findByDepartment() {
+        return null;
     }
 
 }

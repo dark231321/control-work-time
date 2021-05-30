@@ -6,10 +6,16 @@ import lombok.*;
 @Setter
 @Getter
 @NoArgsConstructor
+@ToString
 @AllArgsConstructor
 public class CompanyDto {
-    private String id;
+
+    private int id;
+    @ToString.Include
+    private String name;
+    @ToString.Include
     private String address;
+    @ToString.Include
     private String country;
 
 }

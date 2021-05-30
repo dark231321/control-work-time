@@ -1,5 +1,7 @@
 package danil.teterin.clients.department;
 
+import org.danil.teterin.department.DepartmentDto;
+import org.danil.teterin.department.DepartmentWithCompanyDto;
 import org.springframework.web.bind.annotation.*;
 import reactivefeign.spring.config.ReactiveFeignClient;
 import reactor.core.publisher.Flux;
@@ -23,5 +25,5 @@ public interface DepartmentFeignClient {
     Mono<String> delete(@PathVariable("id") int id);
 
     @GetMapping("api/company/department/{id}")
-    Mono<CompanyDto> findById(@PathVariable("id") int id);
+    Mono<DepartmentDto> findById(@PathVariable("id") int id);
 }

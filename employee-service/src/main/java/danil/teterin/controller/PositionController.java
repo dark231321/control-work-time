@@ -1,6 +1,6 @@
 package danil.teterin.controller;
 
-import danil.teterin.dto.PositionDto;
+
 import danil.teterin.mapper.PositionMapper;
 import danil.teterin.service.PositionService;
 import lombok.RequiredArgsConstructor;

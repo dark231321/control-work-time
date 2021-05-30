@@ -10,6 +10,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import danil.teterin.clients.position.FeignPositionClient;
 import danil.teterin.views.MainView;
+import danil.teterin.views.door.DoorEditorDialog;
+import org.danil.teterin.door.DoorDto;
+import org.danil.teterin.position.PositionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Position", layout = MainView.class)
@@ -19,7 +22,6 @@ public class PositionView extends VerticalLayout {
     private final FeignPositionClient feignPositionClient;
     private static Grid<PositionDto> departmentDtoGrid;
 
-    private final Button backButton             = new Button("BACK");
     private final Button addButton              = new Button("ADD");
     private final Button editButton             = new Button("EDIT");
     private final Button deleteButton           = new Button("DELETE");
@@ -33,8 +35,6 @@ public class PositionView extends VerticalLayout {
     protected void onAttach(AttachEvent attachEvent) {
         if (attachEvent.isInitialAttach()) {
             departmentDtoGrid = new Grid<>(PositionDto.class);
-            HorizontalLayout back = new HorizontalLayout();
-            back.add(backButton);
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
             departmentDtoGrid.setColumns("name");
@@ -46,7 +46,7 @@ public class PositionView extends VerticalLayout {
             horizontalLayout.setVerticalComponentAlignment(Alignment.END, editButton);
             horizontalLayout.setVerticalComponentAlignment(Alignment.START, deleteButton);
             addButtonListner();
-            add(back, departmentDtoGrid, horizontalLayout);
+            add(departmentDtoGrid, horizontalLayout);
         }
     }
 
@@ -59,9 +59,41 @@ public class PositionView extends VerticalLayout {
     }
 
     private void addButtonListner(){
+        departmentDtoGrid.addSelectionListener(valueChangeEvent ->
+        {
+            if (!departmentDtoGrid.asSingleSelect().isEmpty()) {
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+            } else {
+                editButton.setEnabled(false);
+                deleteButton.setEnabled(false);
+            }
+        });
+
+        editButton.addClickListener(
+                event -> {
+                    PositionEditorDialog positionEditorDialog
+                            = new PositionEditorDialog(feignPositionClient,
+                            departmentDtoGrid.asSingleSelect().getValue());
+                    positionEditorDialog.open();
+                    while (!positionEditorDialog.isOpened())
+                        this.setGridValuesReactive();
+                }
+        );
+
+        addButton.addClickListener(
+                e -> {
+                    PositionEditorDialog positionEditorDialog
+                            = new PositionEditorDialog(feignPositionClient,
+                            PositionDto.builder().build());
+                    positionEditorDialog.open();
+                    while (!positionEditorDialog.isOpened())
+                        this.setGridValuesReactive();
+                }
+        );
+
         deleteButton.addClickListener(
-                e -> feignPositionClient.delete(
-                        departmentDtoGrid.asSingleSelect().getValue().getId())
+                e -> feignPositionClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId())
         );
     }
 

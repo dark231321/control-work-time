@@ -12,4 +12,5 @@ public interface CompanyService {
     Mono<String>  delete(Integer id);
     Mono<String>  delete(Company company);
     Flux<CompanyDepartmentDto> findAllCompanyDepartmentDto();
+    Mono<Company> findByDepartment();
 }

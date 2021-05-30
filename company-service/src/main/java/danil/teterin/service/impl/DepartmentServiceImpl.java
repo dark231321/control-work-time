@@ -1,5 +1,6 @@
 package danil.teterin.service.impl;
 
+import danil.teterin.mapper.CompanyMapper;
 import danil.teterin.mapper.DepartmentMapper;
 import danil.teterin.service.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentMapper departmentMapper;
     private final DepartmentRepository departmentRepository;
     private final CompanyService companyService;
+    private final CompanyMapper companyMapper;
 
     @Override
     public Mono<Department> findById(Integer id) {
@@ -61,7 +63,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Flux<DepartmentWithCompanyDto> findDepartmentWithCompanies() {
         log.info("In CompanyServiceImpl - findDepartmentWithCompanies");
         return departmentRepository.findAll()
-                .map(department -> departmentMapper.toEntity(department))
-                .map(department -> companyService.findA);
+                .map(department -> {
+                    var dep = departmentMapper.toDtoComp(department);
+                    companyService.findById(department.getCompanyId())
+                            .map(companyMapper::toDto)
+                            .subscribe(dep::setCompanyDto);
+                    return dep;
+                });
     }
 }

@@ -1,6 +1,6 @@
 package danil.teterin.mapper;
 
-import danil.teterin.dto.AccessLevelDto;
+
 import danil.teterin.model.AccessLevel;
 import org.danil.teterin.accesslevel.AccessLevelDto;
 import org.mapstruct.Mapper;

@@ -8,7 +8,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import danil.teterin.clients.access.AccessFeignClient;
 import org.danil.teterin.accesslevel.AccessLevelDto;
 
-public class AccessEditorDialog  extends Dialog {
+public class AccessEditorDialog extends Dialog {
     private final TextField nameOfCompany              = new TextField("Name: ");
 
     private Button save;
@@ -18,7 +18,8 @@ public class AccessEditorDialog  extends Dialog {
     private AccessFeignClient feignClientCompany;
     private AccessLevelDto accessDto;
 
-    public AccessEditorDialog(AccessFeignClient feignClientCompany, AccessLevelDto accessDto) {
+    public AccessEditorDialog(AccessFeignClient feignClientCompany,
+                              AccessLevelDto accessDto) {
         this.feignClientCompany = feignClientCompany;
         this.accessDto = accessDto;
 
