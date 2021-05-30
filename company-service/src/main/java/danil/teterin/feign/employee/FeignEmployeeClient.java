@@ -22,8 +22,8 @@ public interface FeignEmployeeClient {
     Mono<EmployeeDto> save(@RequestBody EmployeeDto employeeDto);
 
     @DeleteMapping("{id}")
-    Mono<String> delete(@PathVariable("id") String id);
+    Mono<String> delete(@PathVariable("id") Integer id);
 
     @GetMapping("{id}")
-    Mono<EmployeeDto> findById(@PathVariable("id") String id);
+    Mono<EmployeeDto> findById(@PathVariable("id") Integer id);
 }

@@ -21,7 +21,7 @@ public class DoorServiceImpl implements DoorService {
     private final DoorRepository doorRepository;
 
     @Override
-    public Mono<Door> findById(String id) {
+    public Mono<Door> findById(Integer id) {
         log.info("In DoorServiceImpl - findById {}", id);
         return doorRepository.findById(id)
                 .log((Logger) log)
@@ -43,7 +43,7 @@ public class DoorServiceImpl implements DoorService {
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(Integer id) {
         log.info("In DoorServiceImpl - delete by id {}", id);
         return doorRepository
                 .deleteById(id)

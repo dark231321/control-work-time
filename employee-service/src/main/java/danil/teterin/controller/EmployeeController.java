@@ -23,7 +23,7 @@ public class EmployeeController {
     private final EmployeeMapper employeeMapper;
 
     @GetMapping("{id}")
-    private Mono<EmployeeDto> findById(@PathVariable("id") String id) {
+    private Mono<EmployeeDto> findById(@PathVariable("id") Integer id) {
         log.debug("In EmployeeController - findById {}", id);
         return employeeService.findById(id)
                 .map(employeeMapper::toDto);
@@ -53,7 +53,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("{id}")
-    private Mono<String> delete(@PathVariable("id") String id){
+    private Mono<String> delete(@PathVariable("id") Integer id){
         log.debug("In EmployeeController - delete by id {} ", id);
         return employeeService.delete(id);
     }

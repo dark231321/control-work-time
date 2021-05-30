@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Override
-    public Mono<Employee> findById(String id) {
+    public Mono<Employee> findById(Integer id) {
         log.info("In EmployeeServiceImpl - findById {}", id);
         return employeeRepository.findById(id)
                 .log((Logger) log)
@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Mono<Employee> save(Employee employee) {
-        employee.setId(UUID.randomUUID().toString());
+        employee.setId(null);
         log.info("In EmployeeServiceImpl - save {}", employee);
         return employeeRepository.save(employee)
                 .subscribeOn(Schedulers.boundedElastic());
@@ -49,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(Integer id) {
         log.info("In EmployeeServiceImpl - delete by id {}", id);
         return employeeRepository
                 .deleteById(id)

@@ -17,7 +17,7 @@ public interface AccessFeignClient {
     Mono<AccessLevelDto> findById(@PathVariable("id") int id);
 
     @DeleteMapping("{id}")
-    Mono<String> delete(@PathVariable("id") String id);
+    Mono<String> delete(@PathVariable("id") Integer id);
 
     @PostMapping
     Mono<AccessLevelDto> save(@RequestBody AccessLevelDto companyDto);

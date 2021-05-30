@@ -6,9 +6,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface PositionService {
-    Mono<Position> findById(String id);
+    Mono<Position> findById(Integer id);
     Mono<Position> save(Position position);
     Flux<Position> findAll();
-    Mono<String>  delete(String id);
+    Mono<String>  delete(Integer id);
     Mono<String>  delete(Position position);
 }

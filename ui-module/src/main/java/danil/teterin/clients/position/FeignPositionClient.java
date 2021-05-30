@@ -18,8 +18,8 @@ public interface FeignPositionClient {
     Mono<PositionDto> save(@RequestBody PositionDto positionDto);
 
     @DeleteMapping("{id}")
-    Mono<String> delete(@PathVariable("id") String id);
+    Mono<String> delete(@PathVariable("id") Integer id);
 
     @GetMapping("{id}")
-    Mono<PositionDto> findById(@PathVariable("id") String id);
+    Mono<PositionDto> findById(@PathVariable("id") Integer id);
 }

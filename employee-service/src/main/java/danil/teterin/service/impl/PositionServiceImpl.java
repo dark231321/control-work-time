@@ -22,7 +22,7 @@ public class PositionServiceImpl implements PositionService {
     private final PositionRepository positionRepository;
 
     @Override
-    public Mono<Position> findById(String id) {
+    public Mono<Position> findById(Integer id) {
         log.info("In PositionController - findById {}", id);
         return positionRepository.findById(id)
                 .log((Logger) log)
@@ -31,7 +31,7 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public Mono<Position> save(Position position) {
-        position.setId(UUID.randomUUID().toString());
+        position.setId(null);
         log.info("In PositionController - save {}", position);
         return positionRepository.save(position)
                 .subscribeOn(Schedulers.boundedElastic());
@@ -45,7 +45,7 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(Integer id) {
         log.info("In PositionController - delete by id {}", id);
         return positionRepository
                 .deleteById(id)

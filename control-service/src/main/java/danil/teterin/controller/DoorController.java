@@ -20,7 +20,7 @@ public class DoorController {
     private final DoorMapper doorMapper;
 
     @GetMapping("{id}")
-    private Mono<DoorDto> findById(@PathVariable("id") String id) {
+    private Mono<DoorDto> findById(@PathVariable("id") Integer id) {
         log.debug("In ControlController - findById {}", id);
         return doorService.findById(id)
                 .map(doorMapper::toDto);
@@ -50,7 +50,7 @@ public class DoorController {
     }
 
     @DeleteMapping("{id}")
-    private Mono<String> delete(@PathVariable("id") String id){
+    private Mono<String> delete(@PathVariable("id") Integer id){
         log.debug("In ControlController - delete by id {} ", id);
         return doorService.delete(id);
     }

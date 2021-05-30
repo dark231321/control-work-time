@@ -5,9 +5,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface DoorService {
-    Mono<Door> findById(String id);
+    Mono<Door> findById(Integer id);
     Mono<Door> save(Door door);
     Flux<Door> findAll();
-    Mono<String>  delete(String id);
+    Mono<String>  delete(Integer id);
     Mono<String>  delete(Door door);
 }

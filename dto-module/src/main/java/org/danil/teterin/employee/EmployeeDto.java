@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmployeeDto {
-    private String id;
+    private Integer id;
     private String lastname;
     private String firstname;
     private String middlename;

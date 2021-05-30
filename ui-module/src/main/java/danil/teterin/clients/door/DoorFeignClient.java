@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public interface DoorFeignClient {
 
     @GetMapping("{id}")
-    Mono<DoorDto> findById(@PathVariable("id") String id);
+    Mono<DoorDto> findById(@PathVariable("id") Integer id);
 
     @GetMapping
     Flux<DoorDto> findAll();
@@ -22,7 +22,7 @@ public interface DoorFeignClient {
     Mono<String> delete(@RequestBody DoorDto doorDto);
 
     @DeleteMapping("{id}")
-    Mono<String> delete(@PathVariable("id") String id);
+    Mono<String> delete(@PathVariable("id") Integer id);
 
     @PostMapping
     Mono<DoorDto> save(@RequestBody DoorDto doorDto);

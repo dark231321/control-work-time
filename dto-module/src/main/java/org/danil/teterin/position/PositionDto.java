@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PositionDto {
-    private String id;
+    private Integer id;
     private String name;
 }

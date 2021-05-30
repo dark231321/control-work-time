@@ -20,7 +20,7 @@ public class PositionController {
     private final PositionMapper positionMapper;
 
     @GetMapping("{id}")
-    private Mono<PositionDto> findById(@PathVariable("id") String id) {
+    private Mono<PositionDto> findById(@PathVariable("id") Integer id) {
         log.debug("In PositionController - findById {}", id);
         return positionService.findById(id)
                 .map(positionMapper::toDto);
@@ -50,7 +50,7 @@ public class PositionController {
     }
 
     @DeleteMapping("{id}")
-    private Mono<String> delete(@PathVariable("id") String id){
+    private Mono<String> delete(@PathVariable("id") Integer id){
         log.debug("In PositionController - delete by id {} ", id);
         return positionService.delete(id);
     }

@@ -10,7 +10,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ControlDto {
-    private String id;
+    private Integer id;
     private Date out;
     private Date enter;
     private String doorFk;
