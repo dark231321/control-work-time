@@ -30,6 +30,8 @@
         <module>control-service</module>
         <module>discovery-service</module>
         <module>gateway-service</module>
+        <module>config-server</module>
+        <module>employee-service</module>
     </modules>
 
 

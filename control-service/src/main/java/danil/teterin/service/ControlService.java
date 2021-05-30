@@ -1,8 +1,6 @@
 package danil.teterin.service;
 
-import danil.teterin.feign.dto.DepartmentDto;
 import danil.teterin.model.Control;
-import danil.teterin.model.Door;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

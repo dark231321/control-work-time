@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import danil.teterin.dto.company.CompanyDto;
 import danil.teterin.mapper.CompanyMapper;
 import danil.teterin.service.CompanyService;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,18 +28,16 @@ public class CompanyController {
                 .map(companyMapper::toDto);
     }
 
+    @GetMapping("/int")
+    private Mono<Integer> findInteger() {
+        return Mono.just(1);
+    }
 
     @GetMapping
     private Flux<CompanyDto> findAll() {
         log.debug("In CompanyController - findAll ");
         return companyService.findAll()
                 .map(companyMapper::toDto);
-    }
-
-    @DeleteMapping("{id}")
-    private Mono<String> delete(@PathVariable("id") Integer id) {
-        log.debug("In CompanyController - delete by id {} ", id);
-        return companyService.delete(id);
     }
 
     @PostMapping

@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  # This is a workaround for https://github.com/vaadin/spring/issues/381
+spring:
+  application:
+    name: ui-service
+
+  servlet:
+    multipart:
+      enabled: false
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      registerWithEureka: true
+      fetchRegistry: true
+      default-zone: http://localhost:8761/eureka/

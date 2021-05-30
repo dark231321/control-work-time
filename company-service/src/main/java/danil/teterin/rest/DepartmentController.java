@@ -57,9 +57,4 @@ public class DepartmentController {
                 departmentMapper.toEntity(departmentDto));
     }
 
-    @DeleteMapping("{id}")
-    private Mono<String> delete(@PathVariable("id") int id){
-        log.debug("In DepartmentController - delete by id {} ", id);
-        return departmentService.delete(id);
-    }
 }

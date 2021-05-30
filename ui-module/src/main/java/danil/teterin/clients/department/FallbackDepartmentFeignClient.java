@@ -1,7 +1,8 @@
-package danil.teterin.feign.client;
+package danil.teterin.clients.department;
 
-import danil.teterin.feign.DepartmentDto;
+import reactivefeign.FallbackFactory;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public class FallbackDepartmentFeignClient implements DepartmentFeignClient {
 

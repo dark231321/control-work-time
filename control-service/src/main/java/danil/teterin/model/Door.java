@@ -1,6 +1,6 @@
 package danil.teterin.model;
 
-import danil.teterin.feign.dto.DepartmentDto;
+import danil.teterin.feign.DepartmentDto;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Transient;

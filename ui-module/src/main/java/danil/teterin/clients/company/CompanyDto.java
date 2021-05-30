@@ -1,4 +1,4 @@
-package danil.teterin.feign.dto;
+package danil.teterin.clients.company;
 
 import lombok.*;
 
@@ -7,7 +7,9 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentDto {
+public class CompanyDto {
     private String id;
-    private String name;
+    private String address;
+    private String country;
+
 }

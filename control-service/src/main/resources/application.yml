@@ -8,7 +8,7 @@ spring:
   r2dbc:
     username: postgres
     password: 123
-    url: r2dbc:postgresql://localhost:5432/test
+    url: r2dbc:postgresql://localhost:5432/test_control_service
 
   data:
     r2dbc:
@@ -18,7 +18,7 @@ spring:
   liquibase:
     user: postgres
     password: 123
-    url: jdbc:postgresql://localhost:5432/test
+    url: jdbc:postgresql://localhost:5432/test_control_service
     change-log: classpath:liquibase/db.changelog-master.xml
 
 eureka:

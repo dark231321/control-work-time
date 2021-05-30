@@ -4,10 +4,9 @@
                            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="1" author="danil">
-
         <createTable tableName="access_level">
 
-            <column name="id" type="VARCHAR(36)" autoIncrement="true">
+            <column name="id" type="VARCHAR(36)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
@@ -20,7 +19,6 @@
             </column>
 
         </createTable>
-
     </changeSet>
 
 </databaseChangeLog>

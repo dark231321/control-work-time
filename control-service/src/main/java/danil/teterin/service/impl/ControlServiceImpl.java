@@ -1,7 +1,6 @@
 package danil.teterin.service.impl;
 
 import danil.teterin.feign.client.DepartmentFeignClient;
-import danil.teterin.feign.dto.DepartmentDto;
 import danil.teterin.model.Control;
 import danil.teterin.repository.ControlRepository;
 import danil.teterin.service.ControlService;

@@ -35,7 +35,6 @@ services:
     mem_limit: 512M
     depends_on:
       - customers-service
-      - discovery-server
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8080","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
     ports:
       - 8080:8080

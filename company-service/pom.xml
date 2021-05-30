@@ -26,6 +26,7 @@
         <spring-jdbc.version>5.3.7</spring-jdbc.version>
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+        <feign-reactor.version>3.0.3</feign-reactor.version>
     </properties>
 
     <dependencies>
@@ -80,6 +81,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -104,8 +106,15 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>com.playtika.reactivefeign</groupId>
+            <artifactId>feign-reactor-cloud</artifactId>
+            <version>${feign-reactor.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.playtika.reactivefeign</groupId>
+            <artifactId>feign-reactor-spring-configuration</artifactId>
+            <version>${feign-reactor.version}</version>
         </dependency>
 
         <dependency>
