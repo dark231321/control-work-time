@@ -1,10 +1,13 @@
 package danil.teterin.controller;
 
 import danil.teterin.dto.department.DepartmentDto;
+import danil.teterin.dto.department.DepartmentWithCompanyDto;
 import danil.teterin.mapper.DepartmentMapper;
 import danil.teterin.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.danil.teterin.department.DepartmentDto;
+import org.danil.teterin.department.DepartmentWithCompanyDto;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,6 +21,11 @@ public class DepartmentController {
 
     private final DepartmentService departmentService;
     private final DepartmentMapper departmentMapper;
+
+    @GetMapping("/dep-comp")
+    public Flux<DepartmentWithCompanyDto> findDepartmentWithCompanies(){
+        return departmentService.findDepartmentWithCompanies();
+    }
 
     @GetMapping("{id}")
     private Mono<DepartmentDto> findById(@PathVariable("id") Integer id) {

@@ -9,10 +9,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import danil.teterin.clients.door.DoorDto;
 import danil.teterin.clients.door.DoorFeignClient;
-import danil.teterin.clients.employee.EmployeeDto;
-import danil.teterin.clients.employee.FeignEmployeeClient;
 import danil.teterin.views.MainView;
 import org.springframework.beans.factory.annotation.Autowired;
 

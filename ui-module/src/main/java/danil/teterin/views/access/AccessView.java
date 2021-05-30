@@ -8,11 +8,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import danil.teterin.clients.access.AccessDto;
 import danil.teterin.clients.access.AccessFeignClient;
-import danil.teterin.clients.company.CompanyDto;
-import danil.teterin.clients.department.DepartmentDto;
-import danil.teterin.clients.department.DepartmentFeignClient;
 import danil.teterin.views.MainView;
 import org.springframework.beans.factory.annotation.Autowired;
 

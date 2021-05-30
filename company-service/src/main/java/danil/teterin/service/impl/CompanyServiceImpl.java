@@ -1,6 +1,5 @@
 package danil.teterin.service.impl;
 
-import danil.teterin.dto.company.CompanyDepartmentDto;
 import danil.teterin.mapper.CompanyMapper;
 import danil.teterin.mapper.DepartmentMapper;
 import danil.teterin.repo.DepartmentRepository;

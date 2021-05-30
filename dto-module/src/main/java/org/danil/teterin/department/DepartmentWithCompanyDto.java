@@ -1,14 +1,14 @@
-package danil.teterin.dto.department;
+package org.danil.teterin.department;
 
-import danil.teterin.dto.company.CompanyDto;
 import lombok.*;
+import org.danil.teterin.company.CompanyDto;
 
 @Builder(toBuilder = true)
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentCompanyDto {
+public class DepartmentWithCompanyDto {
     private int id;
     private String name;
     private CompanyDto companyDto;

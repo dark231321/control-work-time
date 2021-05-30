@@ -4,29 +4,19 @@ import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.Page;
-import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.PWA;
-import danil.teterin.clients.company.CompanyDto;
 import danil.teterin.clients.company.FeignClientCompany;
 import danil.teterin.views.MainView;
 import org.springframework.beans.factory.annotation.Autowired;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @Route(value = "Company", layout = MainView.class)
-/*@PWA(name = "Vaadin Control", shortName = "Control")
-@Push*/
 @SuppressWarnings("OptionalGetWithoutIsPresent")
 @PageTitle("Company: grid")
 public class CompanyView extends VerticalLayout {
-
+//    private final CompanyEditorForm companyEditorForm;
     private final FeignClientCompany feignClientCompany;
     private Grid<CompanyDto> companyDtoGrid;
 
@@ -49,7 +39,7 @@ public class CompanyView extends VerticalLayout {
             back.add(backButton);
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
-            companyDtoGrid.setColumns("address", "country");
+            companyDtoGrid.setColumns("name", "address", "country");
             setGridValuesReactive();
             HorizontalLayout horizontalLayout = new HorizontalLayout();
             horizontalLayout.add(addButton, editButton, deleteButton);
@@ -70,8 +60,35 @@ public class CompanyView extends VerticalLayout {
     }
 
     private void addClickListener(){
+        companyDtoGrid.addSelectionListener(valueChangeEvent ->
+        {
+            if (!companyDtoGrid.asSingleSelect().isEmpty()) {
+                editButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+            } else {
+                editButton.setEnabled(false);
+                deleteButton.setEnabled(false);
+            }
+        });
+
+        editButton.addClickListener(
+                event -> {
+                    CompanyEditorDialog companyEditorDialog
+                            = new CompanyEditorDialog(feignClientCompany, companyDtoGrid.asSingleSelect().getValue());
+                    companyEditorDialog.open();
+                    while (companyEditorDialog.isOpened())
+                        this.setGridValuesReactive();
+                }
+        );
+
         addButton.addClickListener(
-                e -> feignClientCompany.save(companyDtoGrid.asSingleSelect().getValue())
+             e -> {
+                 CompanyEditorDialog companyEditorDialog
+                         = new CompanyEditorDialog(feignClientCompany, CompanyDto.builder().build());
+                 companyEditorDialog.open();
+                 while (!companyEditorDialog.isOpened())
+                     this.setGridValuesReactive();
+             }
         );
 
         deleteButton.addClickListener(

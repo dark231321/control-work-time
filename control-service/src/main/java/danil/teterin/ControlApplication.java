@@ -18,7 +18,6 @@ public class ControlApplication {
     public static void main(String[] args) {
         DepartmentFeignClient controlService = SpringApplication.run(ControlApplication.class, args)
                 .getBean(DepartmentFeignClient.class);
-        controlService.findAll().count().subscribe(System.out::println);
     }
 
 }

@@ -1,15 +1,13 @@
-package danil.teterin.clients.door;
+package org.danil.teterin.accesslevel;
 
-import liquibase.pro.packaged.S;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Builder
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DoorDto {
+public class AccessLevelDto {
     private String id;
     private String name;
 }

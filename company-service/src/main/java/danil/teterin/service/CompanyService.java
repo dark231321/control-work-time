@@ -1,8 +1,7 @@
 package danil.teterin.service;
 
-import danil.teterin.dto.company.CompanyDepartmentDto;
-import danil.teterin.dto.company.CompanyDto;
 import danil.teterin.model.Company;
+import org.danil.teterin.company.CompanyDepartmentDto;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

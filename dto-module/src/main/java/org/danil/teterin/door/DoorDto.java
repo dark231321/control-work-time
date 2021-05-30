@@ -1,4 +1,4 @@
-package danil.teterin.clients.access;
+package org.danil.teterin.door;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccessDto {
-    private String id;
+public class DoorDto {
+    private int id;
     private String name;
 }

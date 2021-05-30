@@ -21,8 +21,6 @@ public class CompanyApplication {
     public static void main(String[] args) {
         DoorFeignClient companyService = SpringApplication.run(CompanyApplication.class, args)
                 .getBean(DoorFeignClient.class);
-        companyService.findAll().count().subscribe(System.out::println);
-
     }
 
 

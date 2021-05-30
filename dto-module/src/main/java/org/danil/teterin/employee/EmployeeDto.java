@@ -1,4 +1,4 @@
-package danil.teterin.clients.employee;
+package org.danil.teterin.employee;
 
 import lombok.*;
 

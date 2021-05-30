@@ -4,6 +4,8 @@ package danil.teterin.mapper;
 import danil.teterin.dto.company.CompanyDepartmentDto;
 import danil.teterin.dto.company.CompanyDto;
 import danil.teterin.model.Company;
+import org.danil.teterin.company.CompanyDepartmentDto;
+import org.danil.teterin.company.CompanyDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

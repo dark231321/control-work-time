@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import danil.teterin.dto.company.CompanyDto;
 import danil.teterin.mapper.CompanyMapper;
 import danil.teterin.service.CompanyService;
+import org.danil.teterin.company.CompanyDto;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

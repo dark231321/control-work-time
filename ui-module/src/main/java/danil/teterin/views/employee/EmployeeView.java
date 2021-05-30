@@ -8,12 +8,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import danil.teterin.clients.access.AccessDto;
-import danil.teterin.clients.access.AccessFeignClient;
-import danil.teterin.clients.employee.EmployeeDto;
 import danil.teterin.clients.employee.FeignEmployeeClient;
 import danil.teterin.views.MainView;
-import liquibase.pro.packaged.B;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Employee", layout = MainView.class)
@@ -43,7 +39,7 @@ public class EmployeeView extends VerticalLayout {
             back.add(backButton);
             editButton.setEnabled(false);
             deleteButton.setEnabled(false);
-            departmentDtoGrid.setColumns("name");
+            departmentDtoGrid.setColumns("firstname", "lastname", "middlename", "passportSeries", "passportNumber", "dateOfBirthday");
             setGridValuesReactive();
             HorizontalLayout horizontalLayout = new HorizontalLayout();
             horizontalLayout.add(addButton, editButton, deleteButton);

@@ -8,19 +8,16 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import danil.teterin.clients.employee.EmployeeDto;
-import danil.teterin.clients.employee.FeignEmployeeClient;
 import danil.teterin.clients.position.FeignPositionClient;
-import danil.teterin.clients.position.PositionDto;
 import danil.teterin.views.MainView;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value = "Position", layout = MainView.class)
 @SuppressWarnings("OptionalGetWithoutIsPresent")
-@PageTitle("Access-Level: grid")
+@PageTitle("Position: grid")
 public class PositionView extends VerticalLayout {
     private final FeignPositionClient feignPositionClient;
-    private Grid<PositionDto> departmentDtoGrid;
+    private static Grid<PositionDto> departmentDtoGrid;
 
     private final Button backButton             = new Button("BACK");
     private final Button addButton              = new Button("ADD");
@@ -56,7 +53,8 @@ public class PositionView extends VerticalLayout {
     private void setGridValuesReactive() {
         UI ui = getUI().get();
         feignPositionClient.findAll().collectList().subscribe(
-                department -> ui.access(() -> departmentDtoGrid.setItems(department)));
+                department -> ui.access(() -> departmentDtoGrid.setItems(department))
+        );
 
     }
 
@@ -66,4 +64,5 @@ public class PositionView extends VerticalLayout {
                         departmentDtoGrid.asSingleSelect().getValue().getId())
         );
     }
+
 }

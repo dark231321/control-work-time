@@ -1,11 +1,13 @@
 package danil.teterin.service.impl;
 
+import danil.teterin.mapper.DepartmentMapper;
 import danil.teterin.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import danil.teterin.model.Department;
 import danil.teterin.repo.DepartmentRepository;
 import danil.teterin.service.DepartmentService;
+import org.danil.teterin.department.DepartmentWithCompanyDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
@@ -18,6 +20,7 @@ import reactor.util.Logger;
 @RequiredArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService {
 
+    private final DepartmentMapper departmentMapper;
     private final DepartmentRepository departmentRepository;
     private final CompanyService companyService;
 
@@ -52,5 +55,13 @@ public class DepartmentServiceImpl implements DepartmentService {
         log.info("In CompanyServiceImpl - delete by company {}", department);
         return departmentRepository.delete(department)
                 .then(Mono.just("Deleted"));
+    }
+
+    @Override
+    public Flux<DepartmentWithCompanyDto> findDepartmentWithCompanies() {
+        log.info("In CompanyServiceImpl - findDepartmentWithCompanies");
+        return departmentRepository.findAll()
+                .map(department -> departmentMapper.toEntity(department))
+                .map(department -> companyService.findA);
     }
 }

@@ -1,5 +1,4 @@
-package danil.teterin.dto.company;
-
+package org.danil.teterin.company;
 
 import lombok.*;
 

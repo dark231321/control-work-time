@@ -1,8 +1,7 @@
-package danil.teterin.dto.company;
+package org.danil.teterin.company;
 
-import danil.teterin.dto.department.DepartmentDto;
 import lombok.*;
-import danil.teterin.model.Department;
+import org.danil.teterin.department.DepartmentDto;
 
 import java.util.List;
 

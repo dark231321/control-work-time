@@ -1,7 +1,5 @@
 package danil.teterin.clients.department;
 
-import danil.teterin.clients.company.CompanyDto;
-import reactivefeign.FallbackFactory;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
