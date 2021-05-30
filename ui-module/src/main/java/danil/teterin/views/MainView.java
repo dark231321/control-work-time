@@ -1,5 +1,7 @@
 package danil.teterin.views;
 
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.component.Component;
@@ -25,9 +27,9 @@ import danil.teterin.views.position.PositionView;
 
 import java.util.Optional;
 
-//
-//@JsModule("./styles/shared-styles.js")
-//@CssImport("./styles/views/main/main-view.css")
+
+@JsModule("frontend/styles/shared-styles.js")
+@CssImport("frontend/styles/views/main/main-view.css")
 @PWA(name = "My Project", shortName = "My Project", enableInstallPrompt = false)
 @Push
 public class MainView extends AppLayout {
