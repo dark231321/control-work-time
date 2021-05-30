@@ -22,16 +22,22 @@ public class DoorEditorDialog extends Dialog {
     private DoorDto doorDto;
 
     public DoorEditorDialog(DoorFeignClient doorFeignClient,
-                            DoorDto doorDto) {
+                            DoorDto door) {
         this.doorFeignClient = doorFeignClient;
-        this.doorDto = doorDto;init();
+        this.doorDto = door;
+        init();
 
         save   = new Button("Save", event -> {
             doorDto.setName(nameOfCompany.getValue());
-            doorFeignClient.save(doorDto);
+            doorFeignClient.save(doorDto).subscribe();
+            this.close();
         });
         cancel = new Button("Cancel", event -> this.close());
-        delete = new Button("Delete", event -> doorFeignClient.delete(doorDto.getId()));
+        delete = new Button("Delete", event -> {
+            doorFeignClient.delete(doorDto.getId()).subscribe();
+            this.close();
+        }
+        );
         add(new VerticalLayout(nameOfCompany,
                 new HorizontalLayout(cancel, save, delete)));
     }

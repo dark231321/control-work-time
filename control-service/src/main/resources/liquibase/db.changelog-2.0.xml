@@ -7,7 +7,7 @@
 
         <createTable tableName="door">
 
-            <column name="id" type="VARCHAR(36)">
+            <column name="id" type="INTEGER" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
@@ -21,7 +21,7 @@
 
 
             <column name="access_level_fk" type="INTEGER">
-                <constraints nullable="false"/>
+                <constraints nullable="false" referencedTableName="access_level" foreignKeyName="access_level_fk"/>
             </column>
 
 

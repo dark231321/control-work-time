@@ -28,25 +28,32 @@ public class DepartmentEditorDialog extends Dialog {
 
     public DepartmentEditorDialog(FeignClientCompany feignClientCompany,
                                   DepartmentFeignClient departmentFeignClient,
-                                  DepartmentDto departmentDto) {
+                                  DepartmentDto department) {
         this.departmentFeignClient = departmentFeignClient;
         this.feignClientCompany = feignClientCompany;
-        this.departmentDto = departmentDto;
+        this.departmentDto = department;
         init();
 
         save   = new Button("Save", event -> {
             departmentDto.setName(nameOfCompany.getValue());
-            departmentFeignClient.save(departmentDto);
+            departmentFeignClient.save(departmentDto).subscribe();
+            this.close();
         });
         cancel = new Button("Cancel", event -> this.close());
-        delete = new Button("Delete", event -> departmentFeignClient.delete(departmentDto.getId()));
+        delete = new Button("Delete", event -> {
+            departmentFeignClient.delete(departmentDto.getId()).subscribe();
+            this.close();
+        });
         add(new VerticalLayout(nameOfCompany,
                 new HorizontalLayout(cancel, save, delete)));
     }
 
     private void init() {
-        nameOfCompany.setValue(departmentDto.getName());
-        feignClientCompany.findAll().collectList().subscribe(companyDtoSelect::setItems);
+        if(departmentDto != null) {
+            nameOfCompany.setValue(departmentDto.getName());
+            feignClientCompany.findAll().collectList().subscribe(companyDtoSelect::setItems);
+        }else
+            departmentDto = DepartmentDto.builder().build();
     }
 
 }

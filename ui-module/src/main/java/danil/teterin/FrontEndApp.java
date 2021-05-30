@@ -26,7 +26,6 @@ import reactivefeign.spring.config.EnableReactiveFeignClients;
 @EnableFeignClients
 public class FrontEndApp {
     public static void main(String[] args) {
-        DepartmentFeignClient feignClientCompany = SpringApplication.run(FrontEndApp.class, args).getBean(DepartmentFeignClient.class);
-        feignClientCompany.findAll().count().subscribe(System.out::println);
+        SpringApplication.run(FrontEndApp.class, args).getBean(DepartmentFeignClient.class);
     }
 }

@@ -19,16 +19,20 @@ public class AccessEditorDialog extends Dialog {
     private AccessLevelDto accessDto;
 
     public AccessEditorDialog(AccessFeignClient feignClientCompany,
-                              AccessLevelDto accessDto) {
+                              AccessLevelDto access) {
         this.feignClientCompany = feignClientCompany;
-        this.accessDto = accessDto;
+        this.accessDto = access;
         init();
         save   = new Button("Save",   event -> {
             accessDto.setName(nameOfCompany.getValue());
-            feignClientCompany.save(accessDto);
+            feignClientCompany.save(accessDto).subscribe();
+            this.close();
         });
         cancel = new Button("Cancel", event -> this.close());
-        delete = new Button("Delete", event -> feignClientCompany.delete(accessDto.getId()));
+        delete = new Button("Delete", event -> {
+            feignClientCompany.delete(accessDto.getId()).subscribe();
+            this.close();
+        });
         add(new VerticalLayout(nameOfCompany,
                 new HorizontalLayout(cancel, save, delete)));
     }

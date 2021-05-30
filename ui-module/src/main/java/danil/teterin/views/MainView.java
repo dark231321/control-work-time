@@ -28,8 +28,8 @@ import danil.teterin.views.position.PositionView;
 import java.util.Optional;
 
 
-@JsModule("frontend/styles/shared-styles.js")
-@CssImport("frontend/styles/views/main/main-view.css")
+//@JsModule("/frontend/styles/shared-styles.js")
+//@CssImport("/frontend/styles/views/main/main-view.css")
 @PWA(name = "My Project", shortName = "My Project", enableInstallPrompt = false)
 @Push
 public class MainView extends AppLayout {
@@ -55,7 +55,6 @@ public class MainView extends AppLayout {
         layout.add(new DrawerToggle());
         viewTitle = new H1();
         layout.add(viewTitle);
-        layout.add(new Image("images/user.svg", "Avatar"));
         return layout;
     }
 

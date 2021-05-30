@@ -100,7 +100,7 @@ public class DepartmentView extends VerticalLayout {
         );
 
         deleteButton.addClickListener(
-                e -> feignClientCompany.delete(departmentDtoGrid.asSingleSelect().getValue().getId())
+                e -> feignClientCompany.delete(departmentDtoGrid.asSingleSelect().getValue().getId()).subscribe()
         );
     }
 

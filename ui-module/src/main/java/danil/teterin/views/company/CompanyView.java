@@ -92,7 +92,7 @@ public class CompanyView extends VerticalLayout {
         );
 
         deleteButton.addClickListener(
-                e -> feignClientCompany.delete(companyDtoGrid.asSingleSelect().getValue().getId())
+                e -> feignClientCompany.delete(companyDtoGrid.asSingleSelect().getValue().getId()).subscribe()
         );
 
     }

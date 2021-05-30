@@ -39,8 +39,9 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Mono<Company> save(Company company) {
         log.info("In CompanyServiceImpl - save {}", company);
+        company.setId(null);
         return companyRepository.save(company)
-                .subscribeOn(Schedulers.elastic());
+                .subscribeOn(Schedulers.boundedElastic());
     }
 
     @Override

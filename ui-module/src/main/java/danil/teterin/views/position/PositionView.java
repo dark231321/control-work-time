@@ -92,7 +92,7 @@ public class PositionView extends VerticalLayout {
         );
 
         deleteButton.addClickListener(
-                e -> feignPositionClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId())
+                e -> feignPositionClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId()).subscribe()
         );
     }
 

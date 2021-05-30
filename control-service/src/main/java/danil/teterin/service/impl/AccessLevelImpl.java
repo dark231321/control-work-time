@@ -21,7 +21,7 @@ public class AccessLevelImpl implements AccessLevelService {
     private final AccessLevelRepository accessLevelRepository;
 
     @Override
-    public Mono<AccessLevel> findById(String id) {
+    public Mono<AccessLevel> findById(int id) {
         log.info("In AccessLevelImpl - findById {}", id);
         return accessLevelRepository.findById(id)
                 .log((Logger) log)
@@ -43,7 +43,7 @@ public class AccessLevelImpl implements AccessLevelService {
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(int id) {
         log.info("In AccessLevelImpl - delete by id {}", id);
         return accessLevelRepository
                 .deleteById(id)

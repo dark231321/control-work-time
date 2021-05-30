@@ -24,7 +24,7 @@ public class ControlServiceImpl implements ControlService {
     private final ControlRepository controlRepository;
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(int id) {
         log.info("In CompanyServiceImpl - delete by id {}", id);
         return controlRepository
                 .deleteById(id)
@@ -39,7 +39,7 @@ public class ControlServiceImpl implements ControlService {
     }
 
     @Override
-    public Mono<Control> findById(String id) {
+    public Mono<Control> findById(int id) {
         log.info("In CompanyServiceImpl - findById {}", id);
         return controlRepository.findById(id)
                 .log((Logger) log);
@@ -49,7 +49,7 @@ public class ControlServiceImpl implements ControlService {
     public Mono<Control> save(Control control) {
         log.info("In CompanyServiceImpl - save {}", control);
         return controlRepository.save(control)
-                .subscribeOn(Schedulers.elastic());
+                .subscribeOn(Schedulers.boundedElastic());
     }
 
     @Override

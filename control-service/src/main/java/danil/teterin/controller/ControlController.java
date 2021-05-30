@@ -20,7 +20,7 @@ public class ControlController {
     private final ControlMapper controlMapper;
 
     @GetMapping("{id}")
-    private Mono<ControlDto> findById(@PathVariable("id") String id) {
+    private Mono<ControlDto> findById(@PathVariable("id") int id) {
         log.debug("In ControlController - findById {}", id);
         return controlService.findById(id)
                 .map(controlMapper::toDto);
@@ -50,7 +50,7 @@ public class ControlController {
     }
 
     @DeleteMapping("{id}")
-    private Mono<String> delete(@PathVariable("id") String id){
+    private Mono<String> delete(@PathVariable("id") int id){
         log.debug("In ControlController - delete by id {} ", id);
         return controlService.delete(id);
     }

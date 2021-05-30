@@ -94,7 +94,7 @@ public class AccessView extends VerticalLayout {
         );
 
         deleteButton.addClickListener(
-                e -> accessFeignClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId())
+                e -> accessFeignClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId()).subscribe()
         );
     }
 }

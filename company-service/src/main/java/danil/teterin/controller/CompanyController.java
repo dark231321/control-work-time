@@ -40,7 +40,8 @@ public class CompanyController {
 
     @PostMapping
     private Mono<CompanyDto> save(@RequestBody CompanyDto companyDto) {
-        log.debug("In CompanyController - save {} ", companyDto);
+        log.info("In CompanyController - save {} ", companyDto);
+
         return companyService.save(
                 companyMapper.toEntity(companyDto))
                 .map(companyMapper::toDto);

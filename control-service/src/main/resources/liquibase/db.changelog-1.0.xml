@@ -6,7 +6,7 @@
     <changeSet id="1" author="danil">
         <createTable tableName="access_level">
 
-            <column name="id" type="VARCHAR(36)">
+            <column name="id" type="INTEGER" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 

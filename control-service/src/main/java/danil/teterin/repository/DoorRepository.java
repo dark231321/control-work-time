@@ -6,5 +6,5 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DoorRepository extends ReactiveCrudRepository<Door, String> {
+public interface DoorRepository extends ReactiveCrudRepository<Door, Integer> {
 }

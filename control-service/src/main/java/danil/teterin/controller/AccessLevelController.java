@@ -19,7 +19,7 @@ public class AccessLevelController {
     private final AccessLevelMapper accessLevelMapper;
 
     @GetMapping("{id}")
-    private Mono<AccessLevelDto> findById(@PathVariable("id") String id) {
+    private Mono<AccessLevelDto> findById(@PathVariable("id") int id) {
         log.debug("In AccessLevelController - findById {}", id);
         return accessLevelService.findById(id)
                 .map(accessLevelMapper::toDto);
@@ -49,7 +49,7 @@ public class AccessLevelController {
     }
 
     @DeleteMapping("{id}")
-    private Mono<String> delete(@PathVariable("id") String id){
+    private Mono<String> delete(@PathVariable("id") int id){
         log.debug("In AccessLevelController - delete by id {} ", id);
         return accessLevelService.delete(id);
     }

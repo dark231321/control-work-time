@@ -22,19 +22,25 @@ public class CompanyEditorDialog extends Dialog {
     private CompanyDto companyDto;
 
     public CompanyEditorDialog(FeignClientCompany feignClientCompany,
-                               CompanyDto companyDto) {
+                               CompanyDto company) {
         this.feignClientCompany = feignClientCompany;
-        this.companyDto = companyDto;
+        this.companyDto = company;
         init();
+        System.out.println(companyDto);
         save   = new Button("Save",   event -> {
-            companyDto.setName(addressOfCompany.getValue());
+            System.out.println(companyDto);
+            companyDto.setName(nameOfCompany.getValue());
             companyDto.setAddress(addressOfCompany.getValue());
             companyDto.setCountry(countryOfCompany.getValue());
-            feignClientCompany.save(companyDto);
+            feignClientCompany.save(companyDto).subscribe();
+            this.close();
         });
 
         cancel = new Button("Cancel", event -> this.close());
-        delete = new Button("Delete", event -> feignClientCompany.delete(companyDto.getId()));
+        delete = new Button("Delete", event -> {
+            feignClientCompany.delete(companyDto.getId());
+            this.close();
+        });
         add(new VerticalLayout(nameOfCompany,
                 addressOfCompany,
                 countryOfCompany,

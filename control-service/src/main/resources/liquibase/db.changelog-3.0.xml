@@ -7,7 +7,7 @@
 
         <createTable tableName="control">
 
-            <column name="id" type="VARCHAR(36)">
+            <column name="id" type="INTEGER" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 

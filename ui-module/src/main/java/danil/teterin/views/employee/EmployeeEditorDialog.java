@@ -33,12 +33,12 @@ public class EmployeeEditorDialog {
     private final AccessFeignClient accessLevelService;
     private final FeignEmployeeClient employeeService;
 
-    public EmployeeEditorDialog(EmployeeDto employeeDto,
+    public EmployeeEditorDialog(EmployeeDto employee,
                                 DepartmentFeignClient departmentService,
                                 FeignPositionClient positionService,
                                 AccessFeignClient accessLevelService,
                                 FeignEmployeeClient employeeService) {
-        this.employeeDto = employeeDto;
+        this.employeeDto = employee;
         this.departmentService = departmentService;
         this.positionService = positionService;
         this.accessLevelService = accessLevelService;

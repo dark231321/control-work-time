@@ -87,7 +87,7 @@ public class DoorView extends VerticalLayout {
                 e -> {
                     DoorEditorDialog doorEditorDialog
                             = new DoorEditorDialog(doorFeignClient,
-                            DoorDto.builder().build());
+                            null);
                     doorEditorDialog.open();
                     while (!doorEditorDialog.isOpened())
                         this.setGridValuesReactive();
@@ -95,7 +95,7 @@ public class DoorView extends VerticalLayout {
         );
 
         deleteButton.addClickListener(
-                e -> doorFeignClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId())
+                e -> doorFeignClient.delete(departmentDtoGrid.asSingleSelect().getValue().getId()).subscribe()
         );
     }
 }

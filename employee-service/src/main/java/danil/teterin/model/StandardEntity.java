@@ -2,6 +2,7 @@ package danil.teterin.model;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 
 @SuperBuilder
@@ -10,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Column;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class StandardEntity {
+    @Id
     @Column("id")
-    private String id;
+    private Integer id;
 }

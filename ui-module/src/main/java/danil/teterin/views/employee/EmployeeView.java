@@ -69,7 +69,7 @@ public class EmployeeView extends VerticalLayout {
     private void addButtonListner(){
         deleteButton.addClickListener(
                 e -> employeeClient.delete(
-                        departmentDtoGrid.asSingleSelect().getValue().getId())
+                        departmentDtoGrid.asSingleSelect().getValue().getId()).subscribe()
         );
 
     }

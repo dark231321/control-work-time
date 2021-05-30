@@ -13,6 +13,4 @@ import org.springframework.data.domain.Persistable;
 public abstract class BaseEntity {
     @Id
     private Integer id;
-
-
 }

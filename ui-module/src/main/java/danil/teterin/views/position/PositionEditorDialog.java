@@ -21,16 +21,20 @@ public class PositionEditorDialog extends Dialog {
     private PositionDto positionDto;
 
     public PositionEditorDialog(FeignPositionClient feignPositionClient,
-                                PositionDto positionDto) {
+                                PositionDto position) {
         this.feignPositionClient = feignPositionClient;
-        this.positionDto = positionDto;
+        this.positionDto = position;
         init();
         save   = new Button("Save",   event -> {
             positionDto.setName(nameOfCompany.getValue());
-            feignPositionClient.save(positionDto);
+            feignPositionClient.save(positionDto).subscribe();
+            this.close();
         });
         cancel = new Button("Cancel", event -> this.close());
-        delete = new Button("Delete", event -> feignPositionClient.delete(positionDto.getId()));
+        delete = new Button("Delete", event -> {
+            feignPositionClient.delete(positionDto.getId()).subscribe();
+            this.close();
+        });
         add(new VerticalLayout(nameOfCompany,
                 new HorizontalLayout(cancel, save, delete)));
     }

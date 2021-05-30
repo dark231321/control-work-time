@@ -16,10 +16,10 @@ public interface FeignClientCompany {
     @GetMapping("api/company/{id}")
     Mono<CompanyDto> findById(@PathVariable("id") int id);
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("api/company/{id}")
     Mono<String> delete(@PathVariable("id") int id);
 
-    @PostMapping
+    @PostMapping("api/company/")
     Mono<CompanyDto> save(@RequestBody CompanyDto companyDto);
 
 }

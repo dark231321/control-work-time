@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 public class CompanyDto {
 
-    private int id;
+    private Integer id;
     @ToString.Include
     private String name;
     @ToString.Include
