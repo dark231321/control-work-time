@@ -16,7 +16,7 @@ public class FallBackAccessFeignClient implements AccessFeignClient{
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(Integer id) {
         return Mono.error(IllegalArgumentException::new);
     }
 

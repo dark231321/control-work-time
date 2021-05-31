@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /company
+  port: 8082
+
+spring:
+  r2dbc:
+    username: postgres
+    password: 123
+    url: r2dbc:postgresql://localhost:5432/test
+
+    data:
+      r2dbc:
+        repositories:
+          enabled: true
+
+    liquibase:
+      user: postgres
+      password: 123
+      url: jdbc:postgresql://localhost:5432/test
+      change-log: classpath:liquibase/db.changelog-master.xml

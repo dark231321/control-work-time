@@ -1,10 +1,9 @@
 server:
+  servlet:
+    context-path: /control
   port: 8081
 
 spring:
-  application:
-    name: control-service
-
   r2dbc:
     username: postgres
     password: 123
@@ -21,11 +20,3 @@ spring:
     url: jdbc:postgresql://localhost:5432/test_control_service
     change-log: classpath:liquibase/db.changelog-master.xml
 
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      registerWithEureka: true
-      fetchRegistry: true
-      default-zone: http://localhost:8761/eureka/

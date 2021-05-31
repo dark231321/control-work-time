@@ -30,9 +30,10 @@
         <module>control-service</module>
         <module>discovery-service</module>
         <module>gateway-service</module>
-        <module>config-server</module>
         <module>employee-service</module>
         <module>dto-module</module>
+        <module>spring-boot-admin</module>
+        <module>config</module>
     </modules>
 
 

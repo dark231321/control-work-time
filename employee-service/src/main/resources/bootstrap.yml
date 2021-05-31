@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: employee-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      password: 123
+      username: user
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      registerWithEureka: true
+      fetchRegistry: true
+      default-zone: http://localhost:8761/eureka/

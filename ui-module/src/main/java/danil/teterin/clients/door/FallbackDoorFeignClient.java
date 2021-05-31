@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public class FallbackDoorFeignClient implements DoorFeignClient{
     @Override
-    public Mono<DoorDto> findById(String id) {
+    public Mono<DoorDto> findById(Integer id) {
         return Mono.error(IllegalArgumentException::new);
     }
 
@@ -21,7 +21,7 @@ public class FallbackDoorFeignClient implements DoorFeignClient{
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(Integer id) {
         return Mono.error(IllegalArgumentException::new);
     }
 

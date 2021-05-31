@@ -30,6 +30,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.danil.teterin</groupId>
             <artifactId>dto-module</artifactId>
             <version>1.0-SNAPSHOT</version>

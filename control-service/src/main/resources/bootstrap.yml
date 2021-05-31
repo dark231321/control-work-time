@@ -1,0 +1,53 @@
+#server:
+#  port: 8081
+
+spring:
+  application:
+    name: control-service
+
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      password: 123
+      username: user
+eureka:
+  client:
+    service-url:
+      registerWithEureka: true
+      fetchRegistry: true
+      default-zone: https://192.168.1.52:8761/eureka
+
+#spring:
+#  application:
+#    name: control-service
+#  cloud:
+#    config:
+#      uri: http://localhost:8888
+#      fail-fast: true
+#      password: 123
+#      username: user
+#  r2dbc:
+#    username: postgres
+#    password: 123
+#    url: r2dbc:postgresql://localhost:5432/test_control_service
+#
+#  data:
+#    r2dbc:
+#      repositories:
+#        enabled: true
+#
+#  liquibase:
+#    user: postgres
+#    password: 123
+#    url: jdbc:postgresql://localhost:5432/test_control_service
+#    change-log: classpath:liquibase/db.changelog-master.xml
+
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    service-url:
+#      registerWithEureka: true
+#      fetchRegistry: true
+#      default-zone: http://localhost:8761/eureka/

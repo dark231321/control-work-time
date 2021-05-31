@@ -1,17 +1,17 @@
 server:
   port: 8090
 
-
 spring:
-  application:
-    name: gateway-service
-
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
       routes:
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/api/employee/**
         - id: company-service
           uri: lb://company-service
           predicates:
@@ -20,12 +20,9 @@ spring:
           uri: lb://control-service
           predicates:
             - Path=/control/**
-
 eureka:
   client:
     registerWithEureka: true
     fetch-registry: true
     serviceUrl:
       defaultZone: https://192.168.1.52:8761/eureka/
-
-

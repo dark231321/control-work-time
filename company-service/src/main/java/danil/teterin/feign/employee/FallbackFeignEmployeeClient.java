@@ -21,12 +21,13 @@ public class FallbackFeignEmployeeClient implements FeignEmployeeClient {
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(Integer id) {
         return Mono.error(IllegalArgumentException::new);
     }
 
     @Override
-    public Mono<EmployeeDto> findById(String id) {
+    public Mono<EmployeeDto> findById(Integer id) {
         return Mono.error(IllegalArgumentException::new);
     }
+
 }

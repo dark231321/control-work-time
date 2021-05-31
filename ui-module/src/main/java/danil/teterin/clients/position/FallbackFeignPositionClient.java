@@ -16,12 +16,12 @@ public class FallbackFeignPositionClient implements FeignPositionClient {
     }
 
     @Override
-    public Mono<String> delete(String id) {
+    public Mono<String> delete(Integer id) {
         return Mono.error(IllegalArgumentException::new);
     }
 
     @Override
-    public Mono<PositionDto> findById(String id) {
+    public Mono<PositionDto> findById(Integer id) {
         return Mono.error(IllegalArgumentException::new);
     }
 }
