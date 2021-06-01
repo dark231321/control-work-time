@@ -18,12 +18,3 @@ spring:
       password: 123
       url: jdbc:postgresql://localhost:5432/test_employee_service
       change-log: classpath:liquibase/db.changelog-master.xml
-
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    service-url:
-      registerWithEureka: true
-      fetchRegistry: true
-      default-zone: http://localhost:8761/eureka/

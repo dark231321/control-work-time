@@ -1,9 +1,6 @@
-#server:
-#  port: 8080
-  # This is a workaround for https://github.com/vaadin/spring/issues/381
 spring:
   application:
-    name: ui-service
+    name: ui-module
   cloud:
     config:
       uri: http://localhost:8888
@@ -13,10 +10,6 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
-#  servlet:
-#    multipart:
-#      enabled: false
-#
 eureka:
   instance:
     hostname: localhost

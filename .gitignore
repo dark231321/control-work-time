@@ -13,7 +13,7 @@ target/
 # IntelliJ IDEA
 .idea
 *.iml
-
+node_modules/
 # Visual Studio Code
 .factorypath
 

@@ -1,8 +1,0 @@
-server:
-  port: 7070
-
-spring:
-  main:
-    allow-bean-definition-overriding: true
-
-
